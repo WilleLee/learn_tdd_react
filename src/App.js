@@ -1,6 +1,15 @@
 import { useState } from "react";
 import "./App.css";
 
+/**
+ *
+ * @param {string} str
+ * @returns
+ */
+export function spaceCamelCase(str) {
+  return str.replace(/\B([A-Z])\B/g, " $1");
+}
+
 function App() {
   const [backgroundColor, setBackgroundColor] = useState("red");
   const [text, setText] = useState("Change to Blue");

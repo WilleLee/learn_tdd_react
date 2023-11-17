@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, logRoles } from "@testing-library/react";
-import App from "./App";
+import App, { spaceCamelCase } from "./App";
 
 test("should have the correct initial color and be updated when clicked", () => {
   const { container } = render(<App />);
@@ -117,5 +117,19 @@ test("when disabled button has gray background color", () => {
   // expect button to be blue
   expect(button).toHaveStyle({
     backgroundColor: "blue",
+  });
+});
+
+describe("spaces before camel-case capital letters", () => {
+  test("no captial letters inside", () => {
+    expect(spaceCamelCase("Red")).toBe("Red");
+  });
+
+  test("one capital letter inside", () => {
+    expect(spaceCamelCase("MidnightBlue")).toBe("Midnight Blue");
+  });
+
+  test("multiple capital letters inside", () => {
+    expect(spaceCamelCase("MediumVioletRed")).toBe("Medium Violet Red");
   });
 });
