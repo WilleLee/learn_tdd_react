@@ -11,18 +11,17 @@ export function spaceCamelCase(str) {
 }
 
 function App() {
-  const [backgroundColor, setBackgroundColor] = useState("red");
-  const [text, setText] = useState("Change to Blue");
+  const [backgroundColor, setBackgroundColor] = useState("MidnightBlue");
+  const [text, setText] = useState("Change to Medium Violet Red");
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const handleClickButton = (bg) => {
-    if (bg === "red") {
-      setBackgroundColor("blue");
-      setText("Change to Red");
+    if (bg === "MidnightBlue") {
+      setBackgroundColor("MediumVioletRed");
     } else {
-      setBackgroundColor("red");
-      setText("Change to Blue");
+      setBackgroundColor("MidnightBlue");
     }
+    setText(`Change to ${spaceCamelCase(bg)}`);
   };
   return (
     <div>
