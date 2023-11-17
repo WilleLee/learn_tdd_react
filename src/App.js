@@ -20,7 +20,7 @@ function App() {
       <button
         disabled={buttonDisabled}
         style={{
-          backgroundColor,
+          backgroundColor: buttonDisabled ? "gray" : backgroundColor,
         }}
         onClick={() => handleClickButton(backgroundColor)}
       >
@@ -33,6 +33,7 @@ function App() {
           defaultChecked={buttonDisabled}
           onChange={(e) => setButtonDisabled(e.target.checked)}
         />
+        <label htmlFor="disable-button-checkbox">Disable button</label>
       </div>
     </div>
   );
