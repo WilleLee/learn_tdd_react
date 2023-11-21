@@ -1,15 +1,8 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
-// components
+// component
 import SummaryForm from "../SummaryForm";
-
-test("should render", () => {
-  render(<SummaryForm />);
-
-  const elem = screen.getByText(/summary form/i);
-
-  expect(elem).toBeInTheDocument();
-});
 
 describe("initial conditions", () => {
   test("checkbox should be unchecked by default", () => {
@@ -23,26 +16,45 @@ describe("initial conditions", () => {
   test("button should be disabled by default", () => {
     render(<SummaryForm />);
 
-    const button = screen.getByRole("button", { name: /confirm/i });
+    const button = screen.getByRole("button", { name: /confirm order/i });
 
     expect(button).toBeDisabled();
   });
+});
 
-  test("if checkbox is checked, button should be enabled", () => {
+describe("functions", () => {
+  test("if checkbox is checked, button should be enabled", async () => {
+    const user = userEvent.setup();
     render(<SummaryForm />);
 
     const button = screen.getByRole("button", {
-      name: /confirm/i,
+      name: /confirm order/i,
     });
 
     const checkbox = screen.getByRole("checkbox");
 
-    fireEvent.click(checkbox);
+    await user.click(checkbox);
 
     // checkbox is checked?
     expect(checkbox).toBeChecked();
 
     // button is enabled?
     expect(button).toBeEnabled();
+
+    // click again
+    await user.click(checkbox);
+
+    // button is disabled?
+    expect(button).toBeDisabled();
+  });
+
+  test("popover responds to hover", async () => {
+    const user = userEvent.setup();
+
+    // popover starts out hidden
+
+    // popover appears upon mouseover of checkbox label
+
+    // popover disappears when we mouse out
   });
 });
